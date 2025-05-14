@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ministry Expenditure Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 20px;
+    }
+    .dashboard {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 { text-align: center; color: #2c3e50; }
+    .filters { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .filter-group { flex: 1; min-width: 150px; }
+    label { font-weight: bold; }
+    select, .expenditure-box {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .expenditure-box {
+      background: #ecf0f1;
+      text-align: center;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Ministry Expenditure Dashboard</h1>
+    <div class="filters">
+      <div class="filter-group">
+        <label for="ministry">Ministry</label>
+        <select id="ministry">
+          <option>Health</option><option>Education</option>
+          <option>Transport</option><option>Defense</option>
+          <option>Agriculture</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="year">Year</label>
+        <select id="year">
+          <option>2025</option><option>2024</option>
+          <option>2023</option><option>2022</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="quarter">Quarter</label>
+        <select id="quarter">
+          <option>Q1</option><option>Q2</option>
+          <option>Q3</option><option>Q4</option>
+        </select>
+      </div>
+    </div>
+    <div class="expenditure-box">
+      <p>Total Expenditure: ₹0.00</p>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      Health: { "2025": { Q1: 120000, Q2: 130000, Q3: 125000, Q4: 140000 }, "2024": { Q1: 110000, Q2: 115000, Q3: 120000, Q4: 130000 } },
+      Education: { "2025": { Q1: 90000, Q2: 95000, Q3: 100000, Q4: 105000 }, "2024": { Q1: 85000, Q2: 88000, Q3: 91000, Q4: 97000 } },
+      Transport: { "2025": { Q1: 150000, Q2: 160000, Q3: 155000, Q4: 165000 }, "2024": { Q1: 140000, Q2: 145000, Q3: 148000, Q4: 150000 } },
+      Defense: { "2025": { Q1: 200000, Q2: 210000, Q3: 205000, Q4: 215000 }, "2024": { Q1: 190000, Q2: 195000, Q3: 198000, Q4: 200000 } },
+      Agriculture: { "2025": { Q1: 70000, Q2: 75000, Q3: 73000, Q4: 77000 }, "2024": { Q1: 65000, Q2: 67000, Q3: 69000, Q4: 71000 } }
+    };
+
+    const selects = ['ministry', 'year', 'quarter'].map(id => document.getElementById(id));
+    const output = document.querySelector('.expenditure-box p');
+
+    function update() {
+      const [ministry, year, quarter] = selects.map(s => s.value);
+      const value = data[ministry]?.[year]?.[quarter] || 0;
+      output.textContent = `Total Expenditure: ₹${value.toLocaleString('en-IN')}`;
+    }
+
+    selects.forEach(select => select.addEventListener('change', update));
+    update();
+  </script>
+</body>
+</html>

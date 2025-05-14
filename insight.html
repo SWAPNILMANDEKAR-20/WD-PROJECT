@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Financial Insights | FiscalPulse</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #1a3a4a;
+      --secondary: #2a6470;
+      --accent: #f7b633;
+      --light: #f0f4f7;
+      --dark: #0d1f26;
+      --text: #333;
+      --text-light: #6e7c7c;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: var(--dark);
+      padding: 15px 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .insights-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .insights-header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    .insights-header h1,
+    .insights-header p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .insights-filter {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      margin: -40px auto 50px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+      z-index: 10;
+      position: relative;
+      max-width: 1000px;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      background: var(--light);
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 50px 0;
+    }
+
+    .insight-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .insight-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .insight-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .insight-card:hover .insight-image img {
+      transform: scale(1.1);
+    }
+
+    .insight-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .insight-content {
+      padding: 25px;
+    }
+
+    .insight-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+
+    .insight-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .insight-content p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .insight-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+
+    .insight-author {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .author-avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .read-more {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .read-more:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">FiscalPulse</a>
+        <nav>
+          <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="insight.html">Insights</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="insights-header">
+    <div class="container">
+      <h1>Financial Insights & Research</h1>
+      <p>Discover expert analysis, market trends, and data-driven perspectives to inform your financial decisions.</p>
+    </div>
+  </section>
+
+  <!-- Rest of the content remains unchanged -->
+  <div class="container">
+    <!-- ... -->
+  </div>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".insight-card");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const category = button.getAttribute("data-category");
+
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute("data-category");
+
+          if (category === "all" || cardCategory === category) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

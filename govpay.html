@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pay Matrix Level Checker</title>
+  <link rel="stylesheet" href="pay checker.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Central Govt Pay Matrix Level Checker</h1>
+
+    <form id="payForm">
+      <label for="jobTitle">Job Title:</label>
+      <select id="jobTitle">
+        <option value="">Select a Job Title</option>
+        <option value="Assistant Section Officer">Assistant Section Officer</option>
+        <option value="Junior Secretariat Assistant">Junior Secretariat Assistant</option>
+        <option value="Upper Division Clerk">Upper Division Clerk</option>
+        <option value="Lower Division Clerk">Lower Division Clerk</option>
+        <option value="Income Tax Inspector">Income Tax Inspector</option>
+        <option value="Central Excise Inspector">Central Excise Inspector</option>
+        <option value="Preventive Officer">Preventive Officer</option>
+        <option value="Examiner (CBIC)">Examiner (CBIC)</option>
+        <option value="Assistant Audit Officer">Assistant Audit Officer</option>
+        <option value="Statistical Investigator">Statistical Investigator</option>
+        <option value="Auditor (CAG/CGDA)">Auditor (CAG/CGDA)</option>
+        <option value="Stenographer Grade C">Stenographer Grade C</option>
+        <option value="Stenographer Grade D">Stenographer Grade D</option>
+        <option value="Postal Assistant">Postal Assistant</option>
+        <option value="Sorting Assistant">Sorting Assistant</option>
+        <option value="Multi Tasking Staff (MTS)">Multi Tasking Staff (MTS)</option>
+        <option value="Tax Assistant">Tax Assistant</option>
+        <option value="Divisional Accountant">Divisional Accountant</option>
+        <option value="Sub-Inspector (CBI)">Sub-Inspector (CBI)</option>
+        <option value="Sub-Inspector (NIA)">Sub-Inspector (NIA)</option>
+      </select>
+
+      <label for="gradePay">Grade Pay:</label>
+      <select id="gradePay">
+        <option value="">Select Grade Pay</option>
+        <option value="2400">₹2400</option>
+        <option value="2800">₹2800</option>
+        <option value="4200">₹4200</option>
+        <option value="4600">₹4600</option>
+        <option value="4800">₹4800</option>
+      </select>
+
+      <label for="serviceYears">Years of Service:</label>
+      <input type="number" id="serviceYears" min="0" max="40"/>
+
+      <button type="submit">Check Pay Level</button>
+    </form>
+
+    <div class="result" id="resultBox">
+      <h2>Result:</h2>
+      <p id="output">Fill in the form to see your Pay Level.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
